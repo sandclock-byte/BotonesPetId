@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 
-export default function Registrar(props) {
+export default function BotonAzul(props) {
     const { title, onPress } = props;
     const [pressed, setPressed] = useState(false);
 
