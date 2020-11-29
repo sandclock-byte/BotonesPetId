@@ -1,6 +1,15 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 
+const styleNoPressed = {
+    backgroundColor: '#1D4293',
+    textColor: '#FFF'
+};
+
+const stylePressed = {
+    backgroundColor: '#FFF',
+    textColor: '#1D4293'
+};
 export default function BotonAzul(props) {
     const { title, onPress } = props;
     const [pressed, setPressed] = useState(false);
@@ -13,8 +22,20 @@ export default function BotonAzul(props) {
                 onShowUnderlay={() => { setPressed(true) }} // Cuando el botón es presionado
                 onPress={onPress}
             >
-                <View style={[styles.viewButton, pressed ? { backgroundColor: '#FFF' } : { backgroundColor: '#1D4293' }]}>
-                    <Text style={[styles.text, pressed ? { color: '#1D4293' } : { color: '#FFF' }]} >{title}</Text>
+                <View style={[
+                    styles.viewButton,
+                    pressed ?
+                        { backgroundColor: stylePressed.backgroundColor, borderColor: stylePressed.textColor }
+                        : { backgroundColor: styleNoPressed.backgroundColor, borderColor: styleNoPressed.backgroundColor }
+                ]}>
+                    <Text style={[
+                        styles.text,
+                        pressed ?
+                            { color: stylePressed.textColor }
+                            : { color: styleNoPressed.textColor }
+                    ]}>
+                        {title}
+                    </Text>
                 </View>
             </TouchableHighlight>
         </>
@@ -25,7 +46,6 @@ const styles = StyleSheet.create({
 
     viewButton: {
         borderWidth: 1,
-        borderColor: '#1D4293',
         borderRadius: 8,
         paddingVertical: 12,
         paddingHorizontal: 12,
