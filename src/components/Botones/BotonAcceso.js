@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 
+const styleNoAvailable = {
+    backgroundColor: '#C6C6C6',
+};
 const styleNoPressed = {
     backgroundColor: '#1E88E5',
-    textColor: '#FFF'
 };
 
 const stylePressed = {
     backgroundColor: '#005CB2',
-    textColor: '#FFF'
 };
 export default function BotonAcesso(props) {
     const { title, onPress, available } = props;
@@ -24,16 +25,13 @@ export default function BotonAcesso(props) {
             >
                 <View style={[
                     styles.viewButton,
-                    pressed ?
-                        { backgroundColor: stylePressed.backgroundColor }
-                        : { backgroundColor: styleNoPressed.backgroundColor }
+                    available ?
+                        (pressed ?
+                            { backgroundColor: stylePressed.backgroundColor }
+                            : { backgroundColor: styleNoPressed.backgroundColor })
+                        : { backgroundColor: styleNoAvailable.backgroundColor }
                 ]}>
-                    <Text style={[
-                        styles.text,
-                        pressed ?
-                            { color: stylePressed.textColor }
-                            : { color: styleNoPressed.textColor }
-                    ]}>
+                    <Text style={styles.text}>
                         {title}
                     </Text>
                 </View>
@@ -55,5 +53,6 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: 15,
+        color: '#FFF'
     },
 })
