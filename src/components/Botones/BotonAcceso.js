@@ -15,13 +15,15 @@ export default function BotonAcesso(props) {
     const { title, onPress, available } = props;
     const [pressed, setPressed] = useState(false);
 
+    let funcion = available ? onPress : () => { };
+
     return (
         <>
             <TouchableHighlight
                 underlayColor={false}
                 onHideUnderlay={() => { setPressed(false) }} // Cuando el botón NO es presionado
                 onShowUnderlay={() => { setPressed(true) }} // Cuando el botón es presionado
-                onPress={onPress}
+                onPress={funcion}
             >
                 <View style={[
                     styles.viewButton,
